@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/stephanielingwood/simple-site"
+    "url": "https://github.com/clintonjnelson/simple-site.git"
   },
   "description": "Example Site for JS FII Workshop",
   "dependencies": {
+    "express": "^4.12.2"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
