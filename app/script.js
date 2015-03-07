@@ -13,7 +13,40 @@ $(document).ready(function() {
     return arrayOfStrings[ randomIndex ];
   }
 
+  // $("#randomButton").on("click", function() {
+  //   $("#stringDisplay").text(randomString(arrayOfStrings));
+  // });
+
   $("#randomButton").on("click", function() {
-    $("#stringDisplay").text(randomString(arrayOfStrings));
+    $.get("/strings", function(response) {
+      $("#stringDisplay").text(response);
+    });
   });
+
+  // Hover Event Listener
+  $('#stringDisplay').on("mouseleave", function() {
+    $.get("npmstring", function(response) {
+      $("#externalSiteInfo").text(response);
+    });
+  })
+
+
+  // Button Event Listener
+  $("button").on("click", function() {
+    var urlKey = $(this).attr("id");
+    var resText;
+
+    $.get(urlKey, function(response) {
+      if ( typeof response === "object" ) {
+        resText = response.setup + ":" + response.punchline
+      } else {
+        resText = response;
+      }
+
+      $("#stringDisplay").text(resText);
+    });
+  });
+
+
+
 });
