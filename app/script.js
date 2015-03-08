@@ -1,17 +1,18 @@
 // random-string.js
 
 $(document).ready(function() {
-  var arrayOfStrings = [];
+  // WEB APP VERSION 1.0 CODE HAS BEEN COMMENTED OUT
+  // var arrayOfStrings = [];
 
-  for(var i = 0, holder; i < 5; i++) {
-    holder = prompt("Of your 5 favorite animals, please enter #" + (i+1));
-    arrayOfStrings.push( holder );
-  }
+  // for(var i = 0, holder; i < 5; i++) {
+  //   holder = prompt("Of your 5 favorite animals, please enter #" + (i+1));
+  //   arrayOfStrings.push( holder );
+  // }
 
-  function randomString(arrayOfStrings) {
-    randomIndex = Math.floor( arrayOfStrings.length*Math.random() );
-    return arrayOfStrings[ randomIndex ];
-  }
+  // function randomString(arrayOfStrings) {
+  //   randomIndex = Math.floor( arrayOfStrings.length*Math.random() );
+  //   return arrayOfStrings[ randomIndex ];
+  // }
 
   // $("#randomButton").on("click", function() {
   //   $("#stringDisplay").text(randomString(arrayOfStrings));
@@ -24,7 +25,7 @@ $(document).ready(function() {
   });
 
   // Hover Event Listener - Receives JSON
-  $('#stringDisplay').on("mouseleave", function() {
+  $(window).on("keypress", function() {
     $.get("npmstring", function(response) {
       $("#externalSiteInfo").text(JSON.parse(response).text);
     });
