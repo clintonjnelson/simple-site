@@ -23,10 +23,10 @@ $(document).ready(function() {
     });
   });
 
-  // Hover Event Listener
+  // Hover Event Listener - Receives JSON
   $('#stringDisplay').on("mouseleave", function() {
     $.get("npmstring", function(response) {
-      $("#externalSiteInfo").text(response);
+      $("#externalSiteInfo").text(JSON.parse(response).text);
     });
   })
 

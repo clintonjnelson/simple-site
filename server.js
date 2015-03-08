@@ -59,8 +59,9 @@ app.get("/npmstring", function(req, res){
       done: function(err, window) {
         var $ = window.jQuery;
         var npmString = $('#npm-expansions').text();
-        console.log( npmString );
-        res.send( npmString );
+        var needObj = { text: npmString }
+        console.log( needObj.text );
+        res.send( JSON.stringify(needObj) );
       }
     });
   });
