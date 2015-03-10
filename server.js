@@ -1,10 +1,16 @@
 var express = require("express")
   , jsdom = require("jsdom")
-  , request = require("request");
+  , request = require("request")
+  , bodyparser = require("body-parser")
+  , piglatinify = require("./lib/piglatinify.js");
   //, app = module.exports = express.createServer(); // ??
-
 var app = express();
 var port = process.env.PORT || 3000;
+
+// Limit portions of app bringing in, so it doesn't load EVERYTHING
+app.use(bodyparser.json()); // Use the JSON portion of body parser
+app.use(bodyparser.urlencoded({extended: true})); // Use url decoder
+app.use(express.static(__dirname + "/app/"));  // Links Our App Folder
 
 // Content Variables
 var myStrings = [ "apple", "pear", "cherry", "plum", "peach"];
@@ -23,13 +29,22 @@ function randomString(arrayOfStrings) {
   randomIndex = Math.floor( arrayOfStrings.length*Math.random() );
   return arrayOfStrings[ randomIndex ];
 }
+// function piglatinify(word) {
+//   var wordArray = word.split("");
+//   var vowels = "aeiouAEIOU".split("");
+//   var letters, changedWord;
 
+//   // Is my first letter a vowel?
+//   if (vowels.indexOf() !== -1) {
+//     return word + "-hay";
+//   }
+//   letters = wordArray.shift();
+//   changedWord = wordArray.join("") + "-" + letters + "ay";
+//   return changedWord;
+// }
 
 //
 //
-// Links Our App Folder
-app.use(express.static(__dirname + "/app/"));
-
 //
 //
 // Routes
@@ -63,6 +78,17 @@ app.get("/npmstring", function(req, res){
       }
     });
   });
+});
+
+// Posts are sent in the body
+app.post("/piglatin", function(req, res) {  // URL parser gives access to req
+  console.log(req);
+  console.log(req.body);
+  var firstname = piglatinify(req.body.firstname);
+  var lastname = piglatinify(req.body.lastname);
+  var piglatinated = { firstname: firstname, lastname: lastname };
+
+  res.json(piglatinated);  // Send object as JSON
 });
 
 // Server

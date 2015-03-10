@@ -48,6 +48,20 @@ $(document).ready(function() {
     });
   });
 
+  $("#piglatin").on("submit", function(e) {  // "e" stands for returned Event
+    e.preventDefault(); // Keeps it from reloading page!
+    var firstname = $("input[name=firstname]").val();
+    var lastname = $("input[name=lastname]").val();
+    var name = {firstname: firstname, lastname: lastname};
 
+    console.log(name.firstname);
+    console.log(name.lastname);
+    $.post("/piglatin", name, function(response) {
+      // Why build here? Format data IN THE VIEW, NOT IN THE CONTROLLER.
+      var piglatinName = response.firstname + " " + response.lastname;
+      $("#piglatinName").text(piglatinName);
+    });
+
+  });
 
 });
