@@ -1,7 +1,6 @@
 var express = require("express")
   , jsdom = require("jsdom")
-  , request = require("request")
-  , url = require("url");
+  , request = require("request");
   //, app = module.exports = express.createServer(); // ??
 
 var app = express();
@@ -50,7 +49,6 @@ app.get("/strings", function(req, res) {
 app.get("/npmstring", function(req, res){
   var siteAddress = "https://www.npmjs.com/package/wolverine";
   request({uri: siteAddress}, function(err, response, body) {
-    var self = this;
 
     // Returns a JSON DOM Object; parses for the proper text
     jsdom.env( {
