@@ -25,14 +25,21 @@ $(document).ready(function() {
   });
 
   // Hover Event Listener - Receives JSON
-  $(window).on("keypress", function() {
+  $("#externalSiteInfo").on("mouseover", function() {
     $.get("npmstring", function(response) {
       $("#externalSiteInfo").text(JSON.parse(response).text);
     });
   })
+  $("#externalSiteInfo").on("mouseout", function() {
+    setTimeout( function(){
+      $("#externalSiteInfo").text("Put your mouse over this text to see their undisclosed text.");
+    }, 3000 );
+  })
 
 
-  // Button Event Listener
+  /////////// Button Event Listeners /////////////
+
+  // Random Strings/Jokes
   $("button").on("click", function() {
     var urlKey = $(this).attr("id");
     var resText;
@@ -54,8 +61,6 @@ $(document).ready(function() {
     var lastname = $("input[name=lastname]").val();
     var name = {firstname: firstname, lastname: lastname};
 
-    console.log(name.firstname);
-    console.log(name.lastname);
     $.post("/piglatin", name, function(response) {
       // Why build here? Format data IN THE VIEW, NOT IN THE CONTROLLER.
       var piglatinName = response.firstname + " " + response.lastname;
@@ -64,4 +69,34 @@ $(document).ready(function() {
 
   });
 
+  // Geocoding for the user's input address
+  // Normally this would require validations....
+  $("#geocode").on("submit", function(e) {
+    e.preventDefault();
+
+    // Gather user input here & format for geocoding
+    var location = $("input[name=geoLoc]").val();
+    locationArr = location.split(",");
+    // Trim whitespace on variables
+    $.each(locationArr, function(index, value) {
+      locationArr[index] = value.trim();
+    });
+    // Join for API URI
+    searchLocation = ( locationArr.join("+") );
+    searchData = { "searchLocation": searchLocation };
+
+    // Send POST request to server for geocoded Lat/Long response insertion into page
+    $.post("/geocode", searchData, function(response) {
+      $("#latitude").text("Latitude: " + response["latitude"]);
+      $("#longitude").text("Longitude: " + response["longitude"]);
+    });
+  });
 });
+
+
+
+
+
+
+
+

@@ -3,37 +3,82 @@
   <head>
     <!-- <link rel="stylesheet" type="text/css" href="random-strings.css"> -->
     <title> Random Stuff! </title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"/>
   </head>
 
   <body>
-    <h1 id="stringDisplay">Which Will It Pick?</h1>
-    <button id="strings">Document, Give Me A Fruit!</button>
-    <button id="jokes">Document, Give Me An Joke!</button>
-    </br>
-    </br>
+    <div>
+      <div class="panel panel-warning col-sm-8 col-sm-offset-1">
+        <div class="panel-heading">
+          <h3 id="stringDisplay">Which Will It Pick?</h3>
+        </div>
+        <div class="panel-body">
+          <button id="strings" class="btn btn-warning">DOM, Give Me A Fruit!</button>
+          <button id="jokes" class="btn btn-warning">DOM, Give Me An Joke!</button>
+        </div>
+      </div>
 
-    <h2> Interesting Fact </h2>
-    <p>
-      NPM claims that their name doesn't stand for "node package manager".... but their site still loads up with the following descriptive text in the upper left hand corner of the site:
-      <strong id="externalSiteInfo">(push any key to show)</strong>
-    </p>
-    <p>Note that they must replace that text upon the DOM "load" or "ready" with the other text you actually "see" on their site... but the initial GET request has a response with the bold text!</p>
+      <br/>
+      <br/>
+      <div class="panel panel-danger col-sm-8 col-sm-offset-1">
+        <div class="panel-heading">
+          <h2>Interesting Fact</h2>
+          <h3 id="externalSiteInfo">
+            Put your mouse over this text to see their undisclosed text.
+          </h3>
+        </div>
+        <div class="panel-body">
+          <p>
+            NPM claims that their name doesn't stand for "node package manager".... but their site loads up with some descriptive text in the uper left hand corner of the site. They promptly replace this text with alternate names, but what initially loads can be seen above (the "answer")
+            <br/>
+          </p>
+          <p>
+            <em>
+              Note that they must replace that text upon the DOM "load" or "ready" with the other text you actually "see" on their site... but the initial GET request has a response from their server with the answer above!
+            </em>
+          </p>
+        </div>
+      </div>
 
-    <br/>
-    <br/>
-    <p>Piglatinify!</p>
-    <form id="piglatin">
-      <label>First Name</label><input type="text" name="firstname">
-      <label>Last Name</label><input type="text" name="lastname">
-      <input type="submit" value="Piglatinify It"/>
-    </form>
+      <br/>
+      <br/>
+      <div class="panel panel-success col-sm-8 col-sm-offset-1">
+        <div class="panel-heading">
+          <h3>
+            Your name in Pig Latin is: &nbsp
+            <span id="piglatinName"></span>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <form id="piglatin">
+            <label>First Name</label><input type="text" name="firstname">
+            <label>Last Name</label><input type="text" name="lastname">
+            <input type="submit" value="Piglatinify It" class="btn btn-success"/>
+          </form>
+        </div>
+      </div>
 
-    <p> Your name in Pig Latin is:</p>
-    <p id="piglatinName"></p>
-
+      <br/>
+      <br/>
+      <div class="panel panel-primary col-sm-8 col-sm-offset-1">
+        <div class="panel-heading">
+          <h3>Enter A "CITY, ST" to Find its Latitude & Longitude</h3>
+          <p id="latitude">Latitude: </p>
+          <p id="longitude">Longitude: </p>
+        </div>
+        <div class="panel-body">
+          <form id="geocode">
+            <label>Location (CITY, ST): </label><input type="text" name="geoLoc">
+            <input type="submit" value="Give me Lat/Long" class="btn btn-primary"/>
+          </form>
+        </div>
+      </div>
+    </div>
   </body>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   <script src="script.js"></script>
 
 </html>
