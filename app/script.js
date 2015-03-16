@@ -26,19 +26,17 @@ $(document).ready(function() {
 
   // Hover Event Listener - Receives JSON
   $("#externalSiteInfo").on("mouseover", function() {
-    $.get("npmstring", function(response) {
+    $.get("/npmname", function(response) {
       $("#externalSiteInfo").text(JSON.parse(response).text);
     });
-  })
+  });
   $("#externalSiteInfo").on("mouseout", function() {
-    setTimeout( function(){
+    setTimeout( function() {
       $("#externalSiteInfo").text("Put your mouse over this text to see their undisclosed text.");
     }, 3000 );
-  })
-
+  });
 
   /////////// Button Event Listeners /////////////
-
   // Random Strings/Jokes
   $("button").on("click", function() {
     var urlKey = $(this).attr("id");
@@ -46,7 +44,7 @@ $(document).ready(function() {
 
     $.get(urlKey, function(response) {
       if ( typeof response === "object" ) {
-        resText = response.setup + ":" + response.punchline
+        resText = response.setup + ":" + response.punchline;
       } else {
         resText = response;
       }
@@ -59,7 +57,7 @@ $(document).ready(function() {
     e.preventDefault(); // Keeps it from reloading page!
     var firstname = $("input[name=firstname]").val();
     var lastname = $("input[name=lastname]").val();
-    var name = {firstname: firstname, lastname: lastname};
+    var name = { firstname: firstname, lastname: lastname };
 
     $.post("/piglatin", name, function(response) {
       // Why build here? Format data IN THE VIEW, NOT IN THE CONTROLLER.
@@ -92,11 +90,3 @@ $(document).ready(function() {
     });
   });
 });
-
-
-
-
-
-
-
-
